@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+<bean id="deck" class="ru.pokerbender.Deck">
+<property name="cards">
+	<list>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="One"/> </bean>	
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="One"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="One"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="One"/></bean>
+	
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Two"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Two"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Two"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Two"/></bean>
+	
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Three"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Three"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Three"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Three"/></bean>
+
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Four"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Four"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Four"/></bean>
+	<bean class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Four"/></bean>	
+	</list>
+</property>
+</bean>
+
+</beans>
+
+ 

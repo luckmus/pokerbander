@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>Example</title>
+</head>
+<body>
+
+  jquery.rest.js examples - see console.
+  <!-- jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+  <!-- jQuery rest -->
+  <script src="../dist/1/jquery.rest.js"></script>
+
+  <script>
+    var client = new $.RestClient('/rest/api/');
+
+    client.add('foo');
+    client.foo.add('bar', { isSingle: true });
+    client.foo.bar.add('bazz');
+
+    client.foo.bar.bazz.read(42, 21);
+    // GET /rest/api/foo/42/bar/bazz/21/
+    //        'bar' has no id  ^
+
+  </script>
+
+</body>
+</html>
+

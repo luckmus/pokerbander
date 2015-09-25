@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Example</title>
+</head>
+<body>
+
+  jquery.rest.js examples - see console.
+  <!-- jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+  <!-- jQuery rest -->
+  <script src="../dist/1/jquery.rest.js"></script>
+
+  <script>
+
+    var client = new $.RestClient('/rest/api/', {
+      stringifyData: true
+    });
+
+    client.add('foo',{
+      stringifyData: false
+    });
+
+    client.add('bar');
+
+    client.show();
+
+    //foo overrides 'stringifyData': false
+    client.foo.create({data:42});
+    //bar inherits 'stringifyData': true
+    client.bar.create({data:42});
+
+  </script>
+
+</body>
+</html>

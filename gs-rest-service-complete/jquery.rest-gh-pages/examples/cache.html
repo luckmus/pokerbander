@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Example</title>
+</head>
+<body>
+
+  jquery.rest.js examples - see console.
+  <!-- jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+  <!-- jQuery rest -->
+  <script src="../dist/1/jquery.rest.js"></script>
+
+  <script>
+
+    //display ajax result
+    function result(obj) {
+      console.log(obj);
+    }
+
+    var client = new $.RestClient('', {
+      cache: 5
+    });
+
+    client.addVerb('data', 'GET');
+
+    var n = 0;
+    var request = function() {
+      var wait = Math.round(Math.random()*1500);
+      console.log("request " + n++ + " in " + wait + "ms...");
+      var r = client.data({ request: 42 }).done(result);
+      if(n <= 20) 
+      setTimeout(request, wait);
+    };
+
+    $.ajaxPrefilter( function( options ) {
+      console.log("make request:", options);
+    });
+
+    request();
+
+
+  </script>
+
+</body>
+</html>
+

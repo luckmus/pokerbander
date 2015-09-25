@@ -1,0 +1,18 @@
+{
+  "name": "jquery.rest",
+  "title": "jQuery REST Client",
+  "version": "1.0.2",
+  "description": "A jQuery plugin for easy consumption of REST APIs",
+  "homepage": "https://github.com/jpillora/jquery.rest",
+  "author": "Jaime Pillora <dev@jpillora.com>",
+  "license": "MIT",
+  "jquery": true,
+  "bower": true,
+  "keywords": [
+    "rest",
+    "client",
+    "ajax"
+  ],
+  "source": "~/.grunt-sources/jslib",
+  "repo": "https://github.com/jpillora/grunt-source-jslib.git"
+}
