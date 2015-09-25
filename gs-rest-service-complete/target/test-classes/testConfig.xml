@@ -27,6 +27,42 @@
 	<bean id="c4" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Four"/></bean>
 	<bean id="s4" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Four"/></bean>
 	
+	<bean id="h5" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Five"/></bean>
+	<bean id="d5" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Five"/></bean>
+	<bean id="c5" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Five"/></bean>
+	<bean id="s5" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Five"/></bean>
+
+	<bean id="h6" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Six"/></bean>
+	<bean id="d6" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Six"/></bean>
+	<bean id="c6" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Six"/></bean>
+	<bean id="s6" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Six"/></bean>
+	
+	<bean id="h10" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Ten"/></bean>
+	<bean id="d10" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Ten"/></bean>
+	<bean id="c10" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Ten"/></bean>
+	<bean id="s10" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Ten"/></bean>
+	
+	<bean id="hJ" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Jack"/></bean>
+	<bean id="dJ" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Jack"/></bean>
+	<bean id="cJ" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Jack"/></bean>
+	<bean id="sJ" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Jack"/></bean>
+	
+	<bean id="hD" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Dame"/></bean>
+	<bean id="dD" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Dame"/></bean>
+	<bean id="cD" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Dame"/></bean>
+	<bean id="sD" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Dame"/></bean>
+	
+	<bean id="hK" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="King"/></bean>
+	<bean id="dK" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="King"/></bean>
+	<bean id="cK" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="King"/></bean>
+	<bean id="sK" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="King"/></bean>
+	
+	
+	<bean id="hA" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Ace"/></bean>
+	<bean id="dA" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Ace"/></bean>
+	<bean id="cA" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Ace"/></bean>
+	<bean id="sA" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Ace"/></bean>
+		
 	<bean id="pairTest1" class="ru.pokerbender.ResultCalculator">
 		<constructor-arg>
 			<list>
@@ -43,7 +79,7 @@
 		</constructor-arg>
 	</bean>	 
 	
-		<bean id="doublePairTest1" class="ru.pokerbender.ResultCalculator">
+	<bean id="doublePairTest1" class="ru.pokerbender.ResultCalculator">
 		<constructor-arg>
 			<list>
 			<ref bean="h3"/>
@@ -56,10 +92,170 @@
 			<ref bean="s2"/>
 			<ref bean="c1"/>
 			<ref bean="d4"/>
-			<ref bean="h1"/>
+			<ref bean="h5"/>
 			</list>
 		</constructor-arg>
-	</bean>	 
+	</bean>	
+	
+	<bean id="fullHouseTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg>
+			<list>
+			<ref bean="h3"/>
+			<ref bean="s1"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+			<ref bean="d3"/>
+			<ref bean="s2"/>
+			<ref bean="c2"/>
+			<ref bean="d2"/>
+			<ref bean="h5"/>
+			</list>
+		</constructor-arg>
+	</bean> 
+	
+	
+	
+	<bean id="kikkerTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg>
+			<list>
+			<ref bean="h3"/>
+			<ref bean="s1"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+			<ref bean="d3"/>
+			<ref bean="s2"/>
+			<ref bean="c2"/>
+			<ref bean="d2"/>
+			<ref bean="h4"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="setTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="h3"/>
+			<ref bean="s1"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="d3"/>
+			<ref bean="s4"/>
+			<ref bean="c2"/>
+			<ref bean="d2"/>
+			<ref bean="h3"/>
+		</list></constructor-arg>
+	</bean>
+	<bean id="streetTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="h3"/>
+			<ref bean="s1"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="d3"/>
+			<ref bean="s4"/>
+			<ref bean="c2"/>
+			<ref bean="d5"/>
+			<ref bean="h3"/>
+		</list></constructor-arg>
+	</bean>
+	
+	<bean id="flushTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="h3"/>
+			<ref bean="s1"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="d3"/>
+			<ref bean="h4"/>
+			<ref bean="h2"/>
+			<ref bean="h5"/>
+			<ref bean="h1"/>
+		</list></constructor-arg>
+	</bean>
+	<bean id="flushTest2" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="c3"/>
+			<ref bean="s1"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="d3"/>
+			<ref bean="c4"/>
+			<ref bean="c2"/>
+			<ref bean="c5"/>
+			<ref bean="c1"/>
+		</list></constructor-arg>
+	</bean>
+	<bean id="quadsTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="c3"/>
+			<ref bean="s1"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="d3"/>
+			<ref bean="h3"/>
+			<ref bean="c2"/>
+			<ref bean="s3"/>
+			<ref bean="c1"/>
+		</list></constructor-arg>
+	</bean>
+	
+	<bean id="straightFlushTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="h3"/>
+			<ref bean="h1"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="c3"/>
+			<ref bean="s3"/>
+			<ref bean="h2"/>
+			<ref bean="h4"/>
+			<ref bean="h5"/>
+		</list></constructor-arg>
+	</bean>
+	<bean id="straightFlushTest2" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="h3"/>
+			<ref bean="c1"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="c3"/>
+			<ref bean="s3"/>
+			<ref bean="h2"/>
+			<ref bean="h4"/>
+			<ref bean="h6"/>
+		</list></constructor-arg>
+	</bean>
+	
+	<bean id="royalFlushTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="hA"/>
+			<ref bean="h10"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="hK"/>
+			<ref bean="hJ"/>
+			<ref bean="hD"/>
+			<ref bean="s4"/>
+			<ref bean="c6"/>
+		</list></constructor-arg>
+	</bean>
+	
+	<bean id="royalFlushTest2" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg><list>
+			<ref bean="hA"/>
+			<ref bean="h10"/>
+		</list></constructor-arg>
+		<constructor-arg><list>
+			<ref bean="hK"/>
+			<ref bean="hJ"/>
+			<ref bean="h4"/>
+			<ref bean="s4"/>
+			<ref bean="c6"/>
+		</list></constructor-arg>
+	</bean>
 </beans>
 
  

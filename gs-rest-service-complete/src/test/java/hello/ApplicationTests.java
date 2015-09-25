@@ -27,9 +27,11 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.ClassUtils;
+import org.testng.remote.SuiteDispatcher;
 
 import ru.pokerbender.ResultCalculator;
+import ru.pokerbender.Card.CardWeight;
+import ru.pokerbender.Card.SUIT;
 import ru.pokerbender.Result;
 import ru.pokerbender.Result.Combination;
 
@@ -61,10 +63,115 @@ public class ApplicationTests {
 	@Test
 	public void testDoublePair() {
 		ResultCalculator rc= (ResultCalculator) ac.getBean("doublePairTest1");
-		Result res = rc.doublePair();
-		System.out.println(res);
+		Result res = rc.findDoublePair();
 		assertNotNull(res);
 		assert(res.getCombination()==Combination.DoublePair);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testFullHouse() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("fullHouseTest1");
+		Result res = rc.findFullHouse();
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.FullHouse);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testKikker() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("kikkerTest1");
+		Result res = rc.findKikker();
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.Kikker);
+		assert(res.getHighestCard().getWeight()==CardWeight.Four);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testSet() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("setTest1");
+		Result res = rc.findSet();
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.Set);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testStraight() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("streetTest1");
+		Result res = rc.findStraight();
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.Straight);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testFlus1() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("flushTest1");
+		Result res = rc.findFlush(SUIT.Hearts);
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.Flush);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testFlush2() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("flushTest2");
+		Result res = rc.findFlush(SUIT.Hearts);
+		assert(res==null);
+		rc= (ResultCalculator) ac.getBean("flushTest2");
+		res = rc.findFlush(SUIT.Clubs);
+		assert(res.getCombination()==Combination.Flush);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testQuads() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("quadsTest1");
+		Result res = rc.findQuads();
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.Quads);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testStreetFlush1() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("straightFlushTest1");
+		Result res = rc.findStreetFlash(SUIT.Hearts);
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.StreetFlash);
+		assert(res.getHighestCard().getSuit()==SUIT.Hearts);
+		System.out.println(res);
+	}
+	
+	@Test
+	public void testStreetFlush2() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("straightFlushTest2");
+		Result res = rc.findStreetFlash(SUIT.Hearts);
+		assert(res==null);
+	}
+	
+	@Test
+	public void testRoyalFlush1() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("royalFlushTest1");
+		Result res = rc.findFlashRoyalBySuit(SUIT.Hearts);
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.FlashRoyal);
+		assert(res.getHighestCard().getSuit()==SUIT.Hearts);
+		System.out.println(res);
+	}
+
+	@Test
+	public void testRoyalFlush2() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("royalFlushTest2");
+		Result res = rc.findFlashRoyalBySuit(SUIT.Hearts);
+		assert(res==null);
+
+		rc= (ResultCalculator) ac.getBean("royalFlushTest2");
+		res = rc.findPair();
+		System.out.println(res);
+		assert(res.getCombination()==Combination.Pair);
 	}
 
 }

@@ -107,12 +107,15 @@ public class ResultCalculator {
 			return null;
 		}
 		int lastWeight = -1;
+		Collections.sort(oneSuited);
 		for (Card c: oneSuited){
 			if (lastWeight == -1){
 				lastWeight = c.getWeight().getWeight();
 				continue;
 			}
-			if ((c.getWeight().getWeight()-lastWeight) != 1){
+			if (c.getWeight().getWeight()==lastWeight){
+				continue;
+			}else if ((c.getWeight().getWeight()-lastWeight) != 1){
 				return null;
 			}
 			
@@ -184,27 +187,57 @@ public class ResultCalculator {
 		return null;
 	}
 	
-	
-	public Result findKare(){
-		return findCardsCount(cards, 4, Combination.Kare);
+	public Result findQuads(){
+		return findCardsCount(cards, 4, Combination.Quads);
 	}
-	//TODO: написать фул хаус
 	
-	public Result findFlash(SUIT suit){
+	public Result findFullHouse(){
+		Result res = findCardsCount(cards, 3, Combination.FullHouse);
+		if (res==null){
+			return null;
+		}
+		List<Card> cardsCopy = new ArrayList();
+		cardsCopy.addAll(cards);
+		//удалю первую тройку
+		for(int i=0; i<cardsCopy.size(); i++){
+			Card c = cardsCopy.get(i);
+			if (c.getWeight().equals(res.getHighestCard().getWeight())){
+				cardsCopy.remove(i);
+				i--;
+			}
+		
+		}
+		Result res1 = findCardsCount(cardsCopy, 2, Combination.Pair);
+		if (res1==null){
+			return null;
+		}
+		return new Result(Combination.FullHouse, res.getHighestCard());
+	}
+	
+	
+	public Result findFlush(SUIT suit){
 		Collection<Card> res = getOneSutedCards(suit);
 		if (res.size()<5){
 			return null;
 		}
-		return new Result(Combination.Flash, getMaxCard(res));
+		return new Result(Combination.Flush, getMaxCard(res));
 	}
 	
-	public Result findStreet(){
+	public Result findStraight(){
 		int lastWeight = -1;
 		int counter = 0;
-		for (Card c: cards){
+		//Set<Card> cardsSorted = new TreeSet();
+		//cardsSorted.addAll(cards);
+		List<Card> cardsSorted = new ArrayList();
+		cardsSorted.addAll(cards); 
+		Collections.sort(cardsSorted);
+		for (Card c: cardsSorted){
 			if (lastWeight == -1){
 				lastWeight = c.getWeight().getWeight();
 				counter++;
+				continue;
+			}
+			if (c.getWeight().getWeight() == lastWeight){
 				continue;
 			}
 			if ((c.getWeight().getWeight()-lastWeight) != 1){
@@ -218,19 +251,20 @@ public class ResultCalculator {
 		if (counter<5){
 			return null;
 		}
-		return new Result(Combination.Street, getMaxCard(cards));
+		return new Result(Combination.Straight, getMaxCard(cards));
 	}
 	
 	public Result findSet(){
 		return findCardsCount(cards,  3, Combination.Set);
 	}
 	
-	public Result doublePair(){
+	public Result findDoublePair(){
 		Result res = findCardsCount(cards, 2, Combination.Pair);
 		if (res==null){
 			return null;
 		}
 		List<Card> cardsCopy = new ArrayList();
+		cardsCopy.addAll(cards);
 		//удалю первую пару
 		for(int i=0; i<cardsCopy.size(); i++){
 			Card c = cardsCopy.get(i);

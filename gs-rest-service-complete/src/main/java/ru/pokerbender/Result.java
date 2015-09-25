@@ -6,10 +6,10 @@ public class Result {
 	public enum Combination{
 		FlashRoyal (10),
 		StreetFlash (9),
-		Kare (8),
+		Quads (8),
 		FullHouse (7),
-		Flash (6),
-		Street (5),
+		Flush (6),
+		Straight (5),
 		Set (4),
 		DoublePair (3),
 		Pair (2),
