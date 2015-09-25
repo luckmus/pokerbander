@@ -57,5 +57,14 @@ public class ApplicationTests {
 		System.out.println(res);
 		assert(res.getCombination()==Combination.Pair);
 	}
+	
+	@Test
+	public void testDoublePair() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("doublePairTest1");
+		Result res = rc.doublePair();
+		System.out.println(res);
+		assertNotNull(res);
+		assert(res.getCombination()==Combination.DoublePair);
+	}
 
 }

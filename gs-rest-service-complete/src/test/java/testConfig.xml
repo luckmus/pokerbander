@@ -22,10 +22,10 @@
 	<bean id="c3" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Three"/></bean>
 	<bean id="s3" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Three"/></bean>
 
-	<bean class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Four"/></bean>
-	<bean class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Four"/></bean>
-	<bean class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Four"/></bean>
-	<bean class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Four"/></bean>
+	<bean id="h4" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Four"/></bean>
+	<bean id="d4" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Four"/></bean>
+	<bean id="c4" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Four"/></bean>
+	<bean id="s4" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Four"/></bean>
 	
 	<bean id="pairTest1" class="ru.pokerbender.ResultCalculator">
 		<constructor-arg>
@@ -39,6 +39,24 @@
 			<ref bean="d3"/>
 			<ref bean="s2"/>
 			<ref bean="c1"/>
+			</list>
+		</constructor-arg>
+	</bean>	 
+	
+		<bean id="doublePairTest1" class="ru.pokerbender.ResultCalculator">
+		<constructor-arg>
+			<list>
+			<ref bean="h3"/>
+			<ref bean="s1"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+			<ref bean="d3"/>
+			<ref bean="s2"/>
+			<ref bean="c1"/>
+			<ref bean="d4"/>
+			<ref bean="h1"/>
 			</list>
 		</constructor-arg>
 	</bean>	 
