@@ -17,6 +17,9 @@ public class Player implements Comparable<Player>{
 	private Card[] cards = new Card[2];
 	public boolean dealer;
 	
+	public String getGuid() {
+		return guid;
+	}
 	public boolean isDealer() {
 		return dealer;
 	}

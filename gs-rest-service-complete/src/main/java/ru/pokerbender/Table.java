@@ -23,26 +23,8 @@ public class Table {
 	}
 	private Player[] players = new Player[6];
 	private Game game;
-	@Deprecated
-	private int gameSum;
-	@Deprecated
-	private List<Card> cards = new LinkedList();
-	@Deprecated
-	private int currentPlayerIndx = -1;
 	private boolean started;
-	@Deprecated
-	private Deck deck;
-	@Deprecated
-	private LinkedList<Player> currentGamePlrs = new LinkedList();
 	private int minRate = 10;
-	@Deprecated
-	private int lastRate = minRate;
-	@Deprecated
-	private Player dealler;
-	@Deprecated
-	private int roundNum;
-	@Deprecated
-	private GAME_STAGE gameStage;
 	
 	public int getMinRate() {
 		return minRate;
@@ -80,6 +62,12 @@ public class Table {
 		started = true;
 	}
 	
+	public Game getGame() {
+		return game;
+	}
+	public boolean isStarted() {
+		return started;
+	}
 	public void startGame(){
 		if (!started){
 			throw new IllegalArgumentException("Игра не запушена");
