@@ -24,6 +24,16 @@ public class Game {
 	}
 	
 	
+	public int getLastRate() {
+		return lastRate;
+	}
+
+
+	public GAME_STAGE getGameStage() {
+		return gameStage;
+	}
+
+
 	public LinkedList<Player> getCurrentGamePlrs() {
 		return currentGamePlrs;
 	}
