@@ -2,10 +2,10 @@ package ru.pokerbender;
 
 import java.util.Comparator;
 
-public class Result {
+public class Result implements Comparable<Result>{
 	public enum Combination{
-		FlashRoyal (10),
-		StreetFlash (9),
+		FlushRoyal (10),
+		StraihgtFlush (9),
 		Quads (8),
 		FullHouse (7),
 		Flush (6),
@@ -64,10 +64,20 @@ public class Result {
 	public void setHighestCard(Card highestCard) {
 		this.highestCard = highestCard;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "Result [combination=" + combination + ", highestCard=" + highestCard + "]";
+	}
+
+	@Override
+	public int compareTo(Result o) {
+		int res = Integer.compare( o.combination.weigth, combination.weigth);
+		if (res == 0){
+			res = Integer.compare(o.highestCard.getWeight().getWeight(), highestCard.getWeight().getWeight());
+		}
+		return res;
 	}
 	
 	

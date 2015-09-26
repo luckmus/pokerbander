@@ -77,7 +77,7 @@ public class ResultCalculator {
 		return res;
 	}
 	
-	public Result findFlashRoyalBySuit(SUIT suit){
+	public Result findFlushRoyalBySuit(SUIT suit){
 		List<Card> oneSuited = getOneSutedCards(suit);
 		if (oneSuited.size()<5){
 			return null;
@@ -98,10 +98,10 @@ public class ResultCalculator {
 		if (findCardByWeight(oneSuited, CardWeight.Ten)==null){
 			return null;
 		}
-		return new Result(Combination.FlashRoyal, getMaxCard(playerCards));
+		return new Result(Combination.FlushRoyal, getMaxCard(playerCards));
 	}
 	
-	public Result findStreetFlash(SUIT suit){
+	public Result findStraightFlush(SUIT suit){
 		List<Card> oneSuited = getOneSutedCards(suit);
 		if (oneSuited.size()<5){
 			return null;
@@ -122,7 +122,7 @@ public class ResultCalculator {
 			lastWeight = c.getWeight().getWeight();
 		}
 		Card maxCard = getMaxCard(oneSuited);
-		return new Result(Combination.StreetFlash,  getMaxCard(playerCards));
+		return new Result(Combination.StraihgtFlush,  getMaxCard(oneSuited));
 	}
 	
 	//TODO: написать стальное колесо, младший стрит флаш
@@ -231,6 +231,7 @@ public class ResultCalculator {
 		List<Card> cardsSorted = new ArrayList();
 		cardsSorted.addAll(cards); 
 		Collections.sort(cardsSorted);
+		Card lastCard = null;
 		for (Card c: cardsSorted){
 			if (lastWeight == -1){
 				lastWeight = c.getWeight().getWeight();
@@ -244,6 +245,7 @@ public class ResultCalculator {
 				counter = 0;
 			}else{
 				counter++;
+				lastCard = c;
 			}
 			
 			lastWeight = c.getWeight().getWeight();
@@ -251,7 +253,7 @@ public class ResultCalculator {
 		if (counter<5){
 			return null;
 		}
-		return new Result(Combination.Straight, getMaxCard(cards));
+		return new Result(Combination.Straight, lastCard);
 	}
 	
 	public Result findSet(){
@@ -278,7 +280,13 @@ public class ResultCalculator {
 		if (res1==null){
 			return null;
 		}
-		return new Result(Combination.DoublePair, res.getHighestCard());
+		//return new Result(Combination.DoublePair, res.getHighestCard());
+		if (res.getHighestCard().getWeight() == res1.getHighestCard().getWeight()){
+			//это quads
+			return null;
+		}
+		Card highPairCard = res.getHighestCard().compareTo(res1.getHighestCard())==1?res.getHighestCard():res1.getHighestCard();
+		return new Result(Combination.DoublePair, highPairCard);
 	}
 	
 	public Result findPair(){

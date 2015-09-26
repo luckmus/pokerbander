@@ -2,8 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util-2.5.xsd 
+   
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 	
@@ -256,6 +262,45 @@
 			<ref bean="c6"/>
 		</list></constructor-arg>
 	</bean>
+	
+	<bean id="player1" class="ru.pokerbender.Player">
+		<property name="cards">
+			<list>	<ref bean="hA"/> <ref bean="h10"/>	</list>
+		</property>
+	</bean>
+	
+	<bean id="player2" class="ru.pokerbender.Player">
+		<property name="cards">
+			<list>	<ref bean="hA"/> <ref bean="cA"/>	</list>
+		</property>
+	</bean>
+	
+	<util:list id="river1" value-type="ru.pokerbender.Card">
+    	<ref bean="hK"/>
+		<ref bean="hJ"/>
+		<ref bean="h4"/>
+		<ref bean="s4"/>
+		<ref bean="c10"/>
+    </util:list>
+    
+    <util:list id="river2" value-type="ru.pokerbender.Card">
+    	<ref bean="hK"/>
+		<ref bean="cK"/>
+		<ref bean="sK"/>
+		<ref bean="s4"/>
+		<ref bean="c4"/>
+    </util:list>
+    
+    <util:list id="river3" value-type="ru.pokerbender.Card">
+    	<ref bean="hK"/>
+		<ref bean="cD"/>
+		<ref bean="sJ"/>
+		<ref bean="s10"/>
+		<ref bean="dA"/>
+    </util:list>
+
 </beans>
+
+ 
 
  

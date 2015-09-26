@@ -1,7 +1,14 @@
 package ru.pokerbender;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import hello.Application;
+import ru.pokerbender.Card.SUIT;
 
 public class Player implements Comparable<Player>{
 	private String guid = UUID.randomUUID().toString().toUpperCase();
@@ -66,6 +73,48 @@ public class Player implements Comparable<Player>{
 	public synchronized int allIn(){
 		int res = sum;
 		sum = 0;
+		return res;
+	}
+	
+	public Set<Result> getResultCombinations(Collection<Card> river){
+		Set<Result> res = new TreeSet();
+		//ResultCalculator resCalc = (ResultCalculator) Application.ac.getBean("resultCalculator");
+		ResultCalculator resCalc = new  ResultCalculator(river, Arrays.asList(cards));
+		
+		Result r = resCalc.findPair();
+		if (r!=null){ res.add(r); }		
+		
+		r = resCalc.findDoublePair();
+		if (r!=null){ res.add(r); }
+		
+		r = resCalc.findSet();
+		if (r!=null){ res.add(r); }
+		
+		r = resCalc.findStraight();
+		if (r!=null){ res.add(r); }
+		
+		for (SUIT s:SUIT.values()){
+			Result r1 = resCalc.findFlush(s);
+			if (r1!=null){ res.add(r1); }		
+		}
+		
+		r = resCalc.findFullHouse();
+		if (r!=null){ res.add(r); }
+		
+		r = resCalc.findQuads();
+		if (r!=null){ res.add(r); }
+		
+		
+		for (SUIT s:SUIT.values()){
+			Result r1 = resCalc.findStraightFlush(s);
+			if (r1!=null){ res.add(r1); }		
+		}
+		
+		for (SUIT s:SUIT.values()){
+			Result r1 = resCalc.findFlushRoyalBySuit(s);
+			if (r1!=null){ res.add(r1); }		
+		}
+		
 		return res;
 	}
 	@Override

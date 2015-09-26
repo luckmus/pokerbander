@@ -22,16 +22,26 @@ public class Table {
 		ShowDown
 	}
 	private Player[] players = new Player[6];
-	private int tableSum;
+	private Game game;
+	@Deprecated
+	private int gameSum;
+	@Deprecated
 	private List<Card> cards = new LinkedList();
+	@Deprecated
 	private int currentPlayerIndx = -1;
 	private boolean started;
+	@Deprecated
 	private Deck deck;
+	@Deprecated
 	private LinkedList<Player> currentGamePlrs = new LinkedList();
 	private int minRate = 10;
+	@Deprecated
 	private int lastRate = minRate;
+	@Deprecated
 	private Player dealler;
+	@Deprecated
 	private int roundNum;
+	@Deprecated
 	private GAME_STAGE gameStage;
 	
 	public int getMinRate() {
@@ -45,21 +55,6 @@ public class Table {
 	}
 	public void setPlayers(Player[] players) {
 		this.players = players;
-	}
-	public int getTableSum() {
-		return tableSum;
-	}
-	public void setTableSum(int tableSum) {
-		this.tableSum = tableSum;
-	}
-	public List<Card> getCards() {
-		List<Card> res = new LinkedList();
-		res.addAll(cards);
-		return res;
-	}
-	public void setCards(List<Card> cards) {
-		this.cards.clear();
-		this.cards.addAll(cards);
 	}
 	
 	public void addPlayer(int place, Player player){
@@ -77,7 +72,7 @@ public class Table {
 	}
 	
 	
-	public void startGame(){
+	public void startTable(){
 		if (getPlayersCount()<2){
 			throw new IllegalArgumentException("Недостаточно игроков");
 		}
@@ -85,147 +80,20 @@ public class Table {
 		started = true;
 	}
 	
-	public void distribution(){
+	public void startGame(){
 		if (!started){
 			throw new IllegalArgumentException("Игра не запушена");
 		}
-		cards.clear();
-		deck = (Deck) Application.ac.getBean("deck");
-		tableSum = 0;
-		currentGamePlrs.clear();
+		LinkedList<Player> currentGamePlrs = new LinkedList();
 		for(Player p : players){
 			if (p!=null){
 				currentGamePlrs.add(p);
 			}
 		}
-		
-		if (currentPlayerIndx==-1){
-			getCurrentPlayer().setDealer(true);
-			dealler = getCurrentPlayer();
-		}else{
-			getCurrentPlayer().setDealer(false);
-			dealler = getNextPlayer();
-			dealler.setDealer(true);
-		}
-		lastRate = minRate;
-		gameStage = GAME_STAGE.Preflop;
-		
-		tableSum += dealler.support(minRate);
-		
-		
+		game = (Game) Application.ac.getBean("game");
+		game.distribution();
 	}
-	
-	public void end(){
-		gameStage = GAME_STAGE.ShowDown;
-		Player winner = getWiner();
-		winner.incSum(tableSum);
-		tableSum = 0;
-		
-		
-	}
-	
-	public Player getWiner(){
-		//TODO: реализация getWiner
-		return null;
-	}
-	
-	public void action(Player p, PLAYERS_ACTION action, int sum){
-		if (!getCurrentPlayer().equals(p)){
-			throw new IllegalArgumentException("Дождись своей очереди!");
-		}
-		
-		switch(action){
-			case Pass:
-				currentGamePlrs.remove(currentPlayerIndx);
-				if (currentGamePlrs.size()==1){
-					end();
-				}
-				else{
-					if (currentPlayerIndx>=(currentGamePlrs.size()-1)){
-						currentPlayerIndx = 0;						
-					}
-					else{
-						currentPlayerIndx++;
-					}
-				}
-			break;
-			case Skip:
-			break;
-			case Support:
-				if (sum<lastRate){
-					throw new IllegalArgumentException("Недостаточно денег");
-				} else if (sum>lastRate){
-					throw new IllegalArgumentException("это повышение а не поддержание");
-				}
-				else{
-					tableSum += p.support(sum);
-					lastRate = sum;				
-				}
-				if (currentPlayerIsLast()){
-					nextRound();
-					return;
-				}
-				
-			break;
-			case PickUp:
-				if (sum<lastRate){
-					throw new IllegalArgumentException("Недостаточно денег");
-				}
-				else{
-					tableSum += p.pickUp(sum);
-					lastRate = sum;
-				}
-			break;
-		}
-		
-		//TODO: проверка окончания круга		
-		//проверка окончания круга
-		
-		getNextPlayer();
-	}
-	
-	public void nextRound(){
-		getFirstPlayer();
-		switch(gameStage){
-			case Flop:
-				getFourthCard();
-			break;
-			case Turn:
-				getFifthCard();
-			break;
-			case River:
-				end();
-			break;
-		}
-	}
-	
-	private boolean currentPlayerIsLast(){
-		return (currentGamePlrs.getLast().equals(getCurrentPlayer()));
-	}
-	
-	public List<Card> getFirstCards(){
-		roundNum = 0;
-		gameStage = GAME_STAGE.Flop;
-		cards.add(deck.getNextCard());
-		cards.add(deck.getNextCard());
-		cards.add(deck.getNextCard());
-		return getCards();
-	}
-	
-	public List<Card> getFourthCard(){
-		gameStage = GAME_STAGE.Turn;
-		roundNum = 0;
-		cards.add(deck.getNextCard());
-		return getCards();
-	}
-	
-	public List<Card> getFifthCard(){
-		gameStage = GAME_STAGE.River;
-		roundNum = 0;
-		cards.add(deck.getNextCard());
-		return getCards();
-	}
-	
+
 	private int getPlayersCount(){
 		int i = 0;
 		for (Player p:players){
@@ -235,42 +103,5 @@ public class Table {
 		}
 		return i;
 	}
-	
-	public int getFirstPlayerIndx(){
-		currentPlayerIndx=0;
-		return currentPlayerIndx;
-	}
-	
-	private int getCurrentPlayerIndx(){
-		if (currentPlayerIndx==-1){
-			currentPlayerIndx=0;
-		}
-		return currentPlayerIndx;
-	}
-	
-	private int getNextPlayerIndx(){
-		if (currentPlayerIndx==-1){
-			return getCurrentPlayerIndx();
-		}
-		else if (currentPlayerIndx==(currentGamePlrs.size()-1)){
-			currentPlayerIndx = 0;
-		}
-		else{
-			currentPlayerIndx++;
-		}
-		return currentPlayerIndx;
-	}
-	
-	public Player getCurrentPlayer(){
-		return currentGamePlrs.get(getCurrentPlayerIndx());
-	}
-	
-	public Player getNextPlayer(){
-		return currentGamePlrs.get(getNextPlayerIndx());
-	}
-	
-	public Player getFirstPlayer(){
-		return currentGamePlrs.get(getFirstPlayerIndx());
-		
-	}
+
 }

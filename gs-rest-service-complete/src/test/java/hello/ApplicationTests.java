@@ -40,14 +40,14 @@ import ru.pokerbender.Result.Combination;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest(randomPort = true)
 public class ApplicationTests {
-	ClassPathXmlApplicationContext ac;
+	public static ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext(new String[] {"testConfig.xml"});
 
 	@Value("${local.server.port}")
 	private int port = 0;
 
 	@Before
 	public void init() throws Exception {
-		ac = new ClassPathXmlApplicationContext(new String[] {"testConfig.xml"});
+		//ac = new ClassPathXmlApplicationContext(new String[] {"testConfig.xml"});
 	}
 
  
@@ -61,12 +61,20 @@ public class ApplicationTests {
 	}
 	
 	@Test
-	public void testDoublePair() {
+	public void testDoublePair1() {
 		ResultCalculator rc= (ResultCalculator) ac.getBean("doublePairTest1");
 		Result res = rc.findDoublePair();
 		assertNotNull(res);
 		assert(res.getCombination()==Combination.DoublePair);
+		assert(res.getHighestCard().getWeight()==CardWeight.Three);
 		System.out.println(res);
+	}
+	
+	@Test
+	public void testDoublePair2() {
+		ResultCalculator rc= (ResultCalculator) ac.getBean("quadsTest1");
+		Result res = rc.findDoublePair();
+		assert(res==null);
 	}
 	
 	@Test
@@ -138,9 +146,9 @@ public class ApplicationTests {
 	@Test
 	public void testStreetFlush1() {
 		ResultCalculator rc= (ResultCalculator) ac.getBean("straightFlushTest1");
-		Result res = rc.findStreetFlash(SUIT.Hearts);
+		Result res = rc.findStraightFlush(SUIT.Hearts);
 		assertNotNull(res);
-		assert(res.getCombination()==Combination.StreetFlash);
+		assert(res.getCombination()==Combination.StraihgtFlush);
 		assert(res.getHighestCard().getSuit()==SUIT.Hearts);
 		System.out.println(res);
 	}
@@ -148,16 +156,16 @@ public class ApplicationTests {
 	@Test
 	public void testStreetFlush2() {
 		ResultCalculator rc= (ResultCalculator) ac.getBean("straightFlushTest2");
-		Result res = rc.findStreetFlash(SUIT.Hearts);
+		Result res = rc.findStraightFlush(SUIT.Hearts);
 		assert(res==null);
 	}
 	
 	@Test
 	public void testRoyalFlush1() {
 		ResultCalculator rc= (ResultCalculator) ac.getBean("royalFlushTest1");
-		Result res = rc.findFlashRoyalBySuit(SUIT.Hearts);
+		Result res = rc.findFlushRoyalBySuit(SUIT.Hearts);
 		assertNotNull(res);
-		assert(res.getCombination()==Combination.FlashRoyal);
+		assert(res.getCombination()==Combination.FlushRoyal);
 		assert(res.getHighestCard().getSuit()==SUIT.Hearts);
 		System.out.println(res);
 	}
@@ -165,7 +173,7 @@ public class ApplicationTests {
 	@Test
 	public void testRoyalFlush2() {
 		ResultCalculator rc= (ResultCalculator) ac.getBean("royalFlushTest2");
-		Result res = rc.findFlashRoyalBySuit(SUIT.Hearts);
+		Result res = rc.findFlushRoyalBySuit(SUIT.Hearts);
 		assert(res==null);
 
 		rc= (ResultCalculator) ac.getBean("royalFlushTest2");

@@ -7,6 +7,12 @@
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
+<bean id="game" class="ru.pokerbender.Game">
+<property name="deck" ref="deck"/>
+</bean>
+
+<bean id="resultCalculator" class="ru.pokerbender.ResultCalculator"></bean>
+
 <bean id="deck" class="ru.pokerbender.Deck">
 <property name="cards">
 	<list>
