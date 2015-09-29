@@ -1,4 +1,4 @@
-package ru.pokerbender.cntrl;
+package ru.pokerbender.cntrlpojo;
 
 import ru.pokerbender.Card;
 import ru.pokerbender.Player;

@@ -1,4 +1,4 @@
-package ru.pokerbender.cntrl;
+package ru.pokerbender.cntrlpojo;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,10 +13,10 @@ public class TableState {
 	private GameInfo gameInfo;
 	private boolean started;
 	private int minRate;
-	
+	private String id;
 	
 	public TableState(Table table) {
-		
+		this.id = table.getId();
 		this.started = table.isStarted();
 		this.minRate = table.getMinRate();
 		players = new ArrayList();
@@ -48,5 +48,47 @@ public class TableState {
 		} 
 		
 	}
+
+	public List<PlayerInfo> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<PlayerInfo> players) {
+		this.players = players;
+	}
+
+	public GameInfo getGameInfo() {
+		return gameInfo;
+	}
+
+	public void setGameInfo(GameInfo gameInfo) {
+		this.gameInfo = gameInfo;
+	}
+
+	public boolean isStarted() {
+		return started;
+	}
+
+	public void setStarted(boolean started) {
+		this.started = started;
+	}
+
+	public int getMinRate() {
+		return minRate;
+	}
+
+	public void setMinRate(int minRate) {
+		this.minRate = minRate;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	
 
 }

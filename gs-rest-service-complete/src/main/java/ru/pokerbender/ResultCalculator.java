@@ -27,6 +27,10 @@ public class ResultCalculator {
 	private List<Card> playerCards = new ArrayList();
 	private List<Card> riverCards = new ArrayList();
 	
+	public ResultCalculator() {
+		super();
+	}
+
 	public ResultCalculator(Collection<Card> riverCards, List<Card> playerCards) {
 		super();
 

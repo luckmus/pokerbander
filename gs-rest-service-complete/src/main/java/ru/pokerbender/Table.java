@@ -2,6 +2,7 @@ package ru.pokerbender;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import hello.Application;
 
@@ -21,11 +22,27 @@ public class Table {
 		River,
 		ShowDown
 	}
-	private Player[] players = new Player[6];
+	private String id /*= UUID.randomUUID().toString().toUpperCase()*/;
+	private Player[] players/* = new Player[6]*/;
 	private Game game;
 	private boolean started;
 	private int minRate = 10;
 	
+	
+	public Table() {
+		super();
+	}
+	
+	public void init(){
+		id = UUID.randomUUID().toString().toUpperCase();
+		players = new Player[6];
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getMinRate() {
 		return minRate;
 	}

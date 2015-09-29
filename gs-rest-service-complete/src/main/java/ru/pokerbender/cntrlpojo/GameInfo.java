@@ -1,4 +1,4 @@
-package ru.pokerbender.cntrl;
+package ru.pokerbender.cntrlpojo;
 
 import java.util.List;
 

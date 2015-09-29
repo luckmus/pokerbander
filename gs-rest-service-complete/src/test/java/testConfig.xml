@@ -43,6 +43,21 @@
 	<bean id="c6" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Six"/></bean>
 	<bean id="s6" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Six"/></bean>
 	
+	<bean id="h7" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Seven"/></bean>
+	<bean id="d7" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Seven"/></bean>
+	<bean id="c7" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Seven"/></bean>
+	<bean id="s7" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Seven"/></bean>
+	
+	<bean id="h8" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Eight"/></bean>
+	<bean id="d8" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Eight"/></bean>
+	<bean id="c8" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Eight"/></bean>
+	<bean id="s8" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Eight"/></bean>
+	
+	<bean id="h9" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Nine"/></bean>
+	<bean id="d9" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Nine"/></bean>
+	<bean id="c9" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Nine"/></bean>
+	<bean id="s9" class="ru.pokerbender.Card"><property name="suit" value="Spades"/> 	<property name="weight" value="Nine"/></bean>	
+	
 	<bean id="h10" class="ru.pokerbender.Card"><property name="suit" value="Hearts"/> 	<property name="weight" value="Ten"/></bean>
 	<bean id="d10" class="ru.pokerbender.Card"><property name="suit" value="Diamonds"/> 	<property name="weight" value="Ten"/></bean>
 	<bean id="c10" class="ru.pokerbender.Card"><property name="suit" value="Clubs"/> 	<property name="weight" value="Ten"/></bean>

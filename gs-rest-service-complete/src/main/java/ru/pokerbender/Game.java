@@ -34,6 +34,11 @@ public class Game {
 	}
 
 
+	public void setDeck(Deck deck) {
+		this.deck = deck;
+	}
+
+
 	public LinkedList<Player> getCurrentGamePlrs() {
 		return currentGamePlrs;
 	}
