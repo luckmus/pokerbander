@@ -87,6 +87,11 @@ public class Game {
 		gameStage = GAME_STAGE.Preflop;
 		
 		gameSum += dealler.support(minRate);
+		for(Player p:currentGamePlrs){
+			p.addCard(deck.getNextCard());
+			p.addCard(deck.getNextCard());
+		}
+		getFirstCards();
 		
 		
 	}

@@ -33,6 +33,7 @@ public class TableState {
 				continue;
 			}
 			PlayerInfo pi = new PlayerInfo(p);
+			players.add(pi);
 			pi.setPlace(i);
 			if (gplayers != null){
 				

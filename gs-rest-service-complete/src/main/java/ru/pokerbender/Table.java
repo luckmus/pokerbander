@@ -56,10 +56,17 @@ public class Table {
 		this.players = players;
 	}
 	
+	public Player addPlayer(int place){
+		Player p = (Player) Application.ac.getBean("player");
+		addPlayer(place, p);
+		return p;
+	}
+	
 	public void addPlayer(int place, Player player){
 		if (player==null){
 			throw new IllegalArgumentException("Игрок не указан");
 		}
+		
 		if ((place<0) | (place>5)){
 			throw new IllegalArgumentException("Нет такого места");
 		}
@@ -68,6 +75,10 @@ public class Table {
 				throw new IllegalArgumentException("Игрок уже сидит за столом");				
 			}
 		}
+		if (players[place]!=null){
+			throw new IllegalArgumentException("Место уже занято");
+		}
+		players[place] = player;
 	}
 	
 	
@@ -89,13 +100,15 @@ public class Table {
 		if (!started){
 			throw new IllegalArgumentException("Игра не запушена");
 		}
+		game = (Game) Application.ac.getBean("game");
 		LinkedList<Player> currentGamePlrs = new LinkedList();
 		for(Player p : players){
 			if (p!=null){
-				currentGamePlrs.add(p);
+				game.getCurrentGamePlrs().add(p);
+				//currentGamePlrs.add(p);
 			}
 		}
-		game = (Game) Application.ac.getBean("game");
+		
 		game.distribution();
 	}
 
