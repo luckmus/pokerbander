@@ -1,9 +1,7 @@
 package ru.pokerbender.bo;
 
 import hello.Application;
-import ru.pokerbender.Player;
 import ru.pokerbender.Room;
-import ru.pokerbender.Table.PLAYERS_ACTION;
 import ru.pokerbender.cntrlpojo.PlayerInfo;
 import ru.pokerbender.cntrlpojo.TableState;
 
@@ -28,12 +26,6 @@ public class GamePlay {
 	public TableState startGame(String id){
 		getRoom().getTable(id).startTable();
 		getRoom().getTable(id).startGame();
-		return new TableState(getRoom().getTable(id));
-	}
-	
-	public TableState action(String tableId, String playerId, PLAYERS_ACTION action, int sum){
-		Player p = getRoom().getTable(tableId).getPlayerById(playerId);
-		getRoom().getTable(tableId).getGame().action(p, action, sum);
 		return new TableState(getRoom().getTable(id));
 	}
 }

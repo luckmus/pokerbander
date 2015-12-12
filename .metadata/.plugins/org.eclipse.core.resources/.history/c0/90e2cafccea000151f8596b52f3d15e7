@@ -62,15 +62,6 @@ public class Table {
 		return p;
 	}
 	
-	public Player getPlayerById(String id){
-		for (Player p:players){
-			if (p.getGuid().equals(id)){
-				return p;
-			}
-		}
-		throw new IllegalArgumentException("Неизвестный игрок");
-	}
-	
 	public void addPlayer(int place, Player player){
 		if (player==null){
 			throw new IllegalArgumentException("Игрок не указан");

@@ -68,7 +68,7 @@ public class Table {
 				return p;
 			}
 		}
-		throw new IllegalArgumentException("Неизвестный игрок");
+		return null;
 	}
 	
 	public void addPlayer(int place, Player player){
