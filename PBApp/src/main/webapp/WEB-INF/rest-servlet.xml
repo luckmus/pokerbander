@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:flow="http://www.springframework.org/schema/webflow-config"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+          http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
+          http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
+          http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.2.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
+          http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+">
+    
+    
+<mvc:annotation-driven />    
+
+
+<context:component-scan base-package="ru.pokerbender.rest" />
+<!--Чтобы разрешить обработку @RequestMapping на уровне типа и на уровне метода-->
+
+<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+   <property name="messageConverters">
+       <list>
+           <ref bean="jsonConverter" />
+  <ref bean="marshallingConverter" />
+       </list>
+   </property>
+</bean>
+
+<bean id="jsonConverter" 
+            class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+   <property name="supportedMediaTypes" value="application/json" />
+</bean>
+<bean id="marshallingConverter" 
+class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+<constructor-arg ref="jaxbMarshaller" />
+    <property name="supportedMediaTypes" value="application/xml"/>
+      </bean>
+
+      <bean id="jaxbMarshaller" 
+      class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+      
+    <property name="classesToBeBound">
+	  <list>
+              <value>ru.pokerbender.cntrlpojo.TableState</value>
+	  </list>
+    </property>
+    
+</bean>
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+
+
+</beans>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+			WEB-INF/config/spring-config.xml, 
+            
+	</param-value>
+    </context-param>
+    <!--
+    WEB-INF/classes/spring/security.xml
+		Loads the Spring web application context, using the files defined above.
+	-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!--
+		Define the Spring WS Servlet. The 'transformWsldLocations' param means
+		that any WSDLs generated are context-aware and contain the correct
+		path to their exposed port types. The 'contextConfigLocation' param
+		with an empty value means that the Spring context won't try to load
+		a file called webservices-servlet.xml
+	-->
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>rest</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>rest</servlet-name>
+        <url-pattern>/service/*</url-pattern>
+    </servlet-mapping>
+
+   
+
+</web-app>

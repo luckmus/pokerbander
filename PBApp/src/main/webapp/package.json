@@ -1,0 +1,63 @@
+{
+  "name": "umarsh-fromtend",
+  "version": "1.0.0",
+  "scripts": {
+    "lite": "lite-server",
+    "start": "concurrent \"npm run lite\" "
+  },
+  "license": "ISC",
+  "peerDependencies": {
+    "@angular/core": "^2.0.0-rc.1"
+  },
+  "dependencies": {
+    "@angular/common":  "2.0.0-rc.3",
+    "@angular/compiler":  "2.0.0-rc.3",
+    "@angular/core":  "2.0.0-rc.3",
+    "@angular/forms": "0.1.1",
+    "@angular/http":  "2.0.0-rc.3",
+    "@angular/platform-browser":  "2.0.0-rc.3",
+    "@angular/platform-browser-dynamic":  "2.0.0-rc.3",
+    "@angular/router":  "2.0.0-rc.2",
+    "@angular/router-deprecated":  "2.0.0-rc.2",
+    "@angular/upgrade":  "2.0.0-rc.3",
+    
+    "systemjs": "^0.19.27",
+    "core-js": "^2.4.0",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12",
+    
+    "angular2-in-memory-web-api": "0.0.12",
+    "bootstrap": "^3.3.6"
+    
+  },
+
+  "devDependencies": {
+    "lodash": "^4.11.1",
+    "typescript": "^1.8.10",
+    "tslint": "^3.5.0",
+    "typings":"^1.0.4",
+    "autoprefixer": "^6.2.1",
+    "concurrently": "^2.0.0",
+    "cssnano": "^3.4.0",
+    "gulp": "^3.9.0",
+    "gulp-ext-replace": "^0.2.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-postcss": "^6.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.10.0",
+    "gulp-uglify": "^1.5.1",
+    "lite-server": "^2.2.0",
+    "postcss": "^5.0.13",
+    "postcss-scss": "^0.1.3",
+    "precss": "^1.3.0",
+    "tsd": "^0.6.5-beta",
+    "angular2-datatable":"0.4.0",
+    "ng2-accordion": "",
+    "ng2-select": "",
+    "angular2-modal": "",
+    "ng2-bs3-modal": ""
+  }
+}

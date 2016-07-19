@@ -1,0 +1,116 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+header {
+  background-color: #66a753;
+  padding: 30px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  color: #f1c40f;
+}
+
+.weather-list {
+  margin: 20px auto;
+  width: 40%;
+}
+
+.card-element {
+  box-shadow: 1px 1px 6px #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 3px;
+  font-size: 12px;
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.temperature {
+  cursor: default;
+}
+
+.info {
+  color: rgba(95, 95, 95, 0.51);
+  font-weight: bold;
+}
+
+.dataTable{
+    font-size: 10px;
+}
+.weather-search {
+  margin: 20px auto;
+  width: 60%;
+  text-align: left;
+  font-size: 12px;
+
+  label {
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  button, input {
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  input {
+    padding: 3px 5px;
+    outline: none;
+    width: 100px;
+    margin-right: 20px;
+  }
+  select{
+      padding: 3px 5px;
+      //    width: 10px;
+  }
+  button {
+    background-color: #2ecc71;
+    border: none;
+    padding: 4px 8px;
+    box-shadow: 1px 1px 1px #95a5a6;
+    cursor: pointer;
+    color: white;
+  }
+
+  button:hover {
+    background-color: #27ae60;
+  }
+  
+  table {
+      font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .weather-list {
+    width: 80%;
+  }
+}
+
+
+.screenCorner{
+    position: absolute;
+    top: 80%;
+    right: 5%;
+    width: 50%;
+    height: 10%;
+    background: #ffcccc;
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+    font-size: 26px;
+    cursor: pointer;
+   }
+.innerdiv {
+    position: absolute;
+
+}
