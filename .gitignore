@@ -1,0 +1,6 @@
+/PBApp/target/
+/PBApp/src/main/webapp/node/
+/PBApp/src/main/webapp/node_modules/
+/PBApp/src/main/webapp/app/
+/PBApp/src/main/webapp/src/
+*/.svn
