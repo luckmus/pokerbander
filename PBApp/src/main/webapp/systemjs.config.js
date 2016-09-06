@@ -10,7 +10,7 @@
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'angular2-datatable':         'node_modules/angular2-datatable',
     'rxjs':                       'node_modules/rxjs',
-    'lodash':                     'https://npmcdn.com/lodash@4.6.1/lodash.js',
+    'lodash':                     'https://unpkg.com/lodash@4.6.1/lodash.js',
     'ng2-select':                 'node_modules/ng2-select',
     'angular2-modal':             'node_modules/angular2-modal',
     'ng2-bs3-modal':              'node_modules/ng2-bs3-modal'
